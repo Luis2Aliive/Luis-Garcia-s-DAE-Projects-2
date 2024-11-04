@@ -8,19 +8,26 @@ print( name )
 print(otherName)
 print( GAS_PRICE )
 
-print(question)
-for i, option in enumerate(options): 
-    print(f"{i + 1}. {option}")
+print(age)
+print(name)
+print(other_name)
+print(GAS_PRICE)
 
-answer = input("Please enter the number of your answer: ")
+def ask_question(question_text, options_list, correct_index):
+    print(question_text)
+    for index, option in enumerate(options_list): 
+        print(f"{index + 1}. {option}")
 
-if answer. isdigit() and 1 <= int (answer) <= len(options):
-    return int (answer) -1 == correct_index 
-else: 
-    print("Invalid input. Please enter a number corresponding to your choice.")
-    return False 
-def run_quiz(): 
-    score = 0 
+    answer = input("Please enter the number of your answer: ")
+
+    if answer.isdigit() and 1 <= int(answer) <= len(options_list):
+        return int(answer) - 1 == correct_index 
+    else: 
+        print("Invalid input. Please enter a number corresponding to your choice.")
+        return False 
+
+def run_quiz():
+    score = 0
     questions = [
         {
             "question": "What is the capital of France?",
@@ -53,23 +60,27 @@ def run_quiz():
             "correct_index": 0
         }
     ]
-    for q in questions:
-        if ask_question (q["question"], q["options"], q["correct_index"]):
+    
+    for question_item in questions:
+        if ask_question(question_item["question"], question_item["options"], question_item["correct_index"]):
             print("Correct!")
-            score +=1 
-        else: 
+            score += 1
+        else:
             print("Incorrect!")
         print()
 
-print(f"You Scored {score} out of {len(questions)}.")
-if score == len (questions):
-    print("Excellent! You got all the questions right!")
-elif score >= len(questions) // 2:
-    print("Good job! You passed the quiz.")
-else:
-    print("You might want to try again.")
-else: 
-    print("You might want to try again.")
+    print(f"You scored {score} out of {len(questions)}.")
+    if score == len(questions):
+        print("Excellent! You got all the questions right!")
+    elif score >= len(questions) // 2:
+        print("Good job! You passed the quiz.")
+    else:
+        print("You might want to try again.")
 
-if__name__ == "__main__":
+if __name__ == "__main__":
     run_quiz()
+
+
+
+
+
