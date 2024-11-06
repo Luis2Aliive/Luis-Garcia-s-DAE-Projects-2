@@ -13,6 +13,7 @@ print(name)
 print(other_name)
 print(GAS_PRICE)
 
+# Function to ask a question, display options, take user input, and check if the answer is correct
 def ask_question(question_text, options_list, correct_index):
     print(question_text)
     for index, option in enumerate(options_list): 
@@ -26,6 +27,7 @@ def ask_question(question_text, options_list, correct_index):
         print("Invalid input. Please enter a number corresponding to your choice.")
         return False 
 
+# Function to run the quiz by iterating through questions and calculating the score
 def run_quiz():
     score = 0
     questions = [
@@ -77,10 +79,6 @@ def run_quiz():
     else:
         print("You might want to try again.")
 
+# Run the quiz if the script is executed directly
 if __name__ == "__main__":
     run_quiz()
-
-
-
-
-
