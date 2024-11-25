@@ -41,3 +41,22 @@ function highlightText(element) {
 function calculateDiscount(price, discount) {
     return price - (price * (discount / 100));
 }
+
+// 7. Automate repetition for simplicity (using a loop)
+for (let i = 0; i < products.length; i++) {
+    navItems[i].style.color = 'blue'; // change nav item color 
+}
+
+// 8. Organize data for efficiency (using an array)
+const products = ['T-Shirts', 'Sweatshirts', 'Pants & Shorts'];
+for (let i = 0; i < products.length; i++) {
+    console.log('Product:', products[i]); // Access array elements
+} 
+
+// 9. Schedule tasks for interactive experiences (using setTimeout)
+let timeoutId = setTimeout(function(){
+    alert("Time's up!");
+}, 5000); // Alerts after 5 seconds 
+
+// Optional: Clear timeout if needed 
+// clearTimeout(timeoutId);
