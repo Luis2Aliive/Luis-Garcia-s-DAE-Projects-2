@@ -1,62 +1,80 @@
 // 1. Centralize JavaScript Management (all code inside this file)
 
-// 2. Work with constants for reliability
-const highlightColor = 'yellow';  // Named constant
+// 2. Work With Constants For Reliability
+const MAX_PARTICIPANTS = 100; // Named Constant For Fixed Value 
+const HIGHLIGHT_COLOR = 'yellow'; // Named Constant For Styling 
 
-// 3. Modify web pages for interaction
-// Use elements by ID, class name, and tag name
-const title = document.getElementById('main-title');
-const navItems = document.getElementsByClassName('nav-item');
-const logo = document.querySelector('.logo');
+// 3. Modify Web Pages For Interaction 
+// Use Elements By ID, Class Name, And Tag Name 
+const title = document.getElementById('main-title'); // Select By ID
+title.style.color = 'darkblue'; // Modify CSS Style
+title.setAttribute('data-status', 'active'); // Add New Attribute
 
-// 4. Direct code flow for logic (using else if statement)
+const navItems = document.getElementsByClassName('nav-item'); // Select By Class Name
+for (let i = 0; i < navItems.length; i++) {
+    navItems[i].style.fontweight = 'bold'; // Modify CSS Style For All Nav Items 
+}
+
+const allLinks = document.getElementByTagName('a'); // Select By Tag Name 
+for (let i = 0; i <allLinks.length; i ++) {
+    allLinks[i].setAttribute('target', '_blank'); // Add New Attribute To Open Links In A New Tab
+}
+
+// 4. Direct Code Flow For Logic (Using Else If Statement)
 function checkUserRole(role) {
-    if (role === 'admin') {
+    if (role =='admin'){
         console.log('Welcome Admin');
-    } else if (role === 'user') {
+    } else if (role === 'user'){
         console.log('Welcome User');
     } else {
         console.log('Role not recognized');
     }
 }
 
-// 5. React to user actions for engagement
-// Onclick event for the logo
-logo.onclick = function() {
-    alert("Logo clicked!");
+//5. React To User Actions For Engagement 
+// Onclick Event For The Logo
+const logo = document.querySelector('.logo'); // Select By Class
+logo.onclick = function () {
+    alert("You Clicked The Logo!"); //Onclick Action 
 };
 
-// Onload event for when the page is fully loaded
-window.onload = function() {
-    alert("Welcome to VerseVibe!");
+// Onload Event For When The Page Is Fully Loaded 
+window.onload = function () {
+    alert("Welcome To VerseVibe!"); // Onload Action
 };
 
-// Onmouseover event for text highlighting
+// Onmouseover Event For Text Highlighting 
 function highlightText(element) {
-    element.style.backgroundColor = highlightColor;  // Change element appearance
+    element.style.backgroundColor = HIGHLIGHT_COLOR; // Change Element Appearance
 }
-
-// 6. Modularize and organize your code with reusable functions
-// Function that accepts multiple arguments and returns a result
-function calculateDiscount(price, discount) {
-    return price - (price * (discount / 100));
-}
+const promotionalText = document.querySelector('p'); // Select By Tag 
+promotionalText.onmouseover = function () {
+    highlightText(promotionalText); // Onmouseover Action
+};
 
 // 7. Automate repetition for simplicity (using a loop)
-for (let i = 0; i < products.length; i++) {
-    navItems[i].style.color = 'blue'; // change nav item color 
+const discounts = [10, 15, 20]; // Example array of discounts
+const discountedPrices = [];
+for (let i = 0; i < discounts.length; i++) {
+    const price = 100; // Example base price
+    const discountedPrice = calculateDiscount(price, discounts[i]);
+    discountedPrices.push(discountedPrice); // Store calculated prices in an array
+    console.log(`Price with ${discounts[i]}% discount: $${discountedPrice}`); // Log result
 }
 
-// 8. Organize data for efficiency (using an array)
+// 8. Organize Data For Efficiency (Using An Array)
 const products = ['T-Shirts', 'Sweatshirts', 'Pants & Shorts'];
 for (let i = 0; i < products.length; i++) {
-    console.log('Product:', products[i]); // Access array elements
-} 
+    console.log('Product:', products[i]); // Log Array Elements
+}
 
 // 9. Schedule tasks for interactive experiences (using setTimeout)
-let timeoutId = setTimeout(function(){
-    alert("Time's up!");
-}, 5000); // Alerts after 5 seconds 
+let timeoutId = setTimeout(function () {
+    alert("Time's Up! Check Our New And Latest Collection Available Now."); // Delayed alert
+}, 5000); // Alerts after 5 seconds
 
-// Optional: Clear timeout if needed 
-// clearTimeout(timeoutId);
+// Clear The Timeout After A Specific Action (Example)
+document.querySelector('body').onclick = function () { 
+    clearTimeout(timeoutId); // Cancel The Scheduled Alert 
+    console.log ("Timeout cleared due to user action.");
+}
