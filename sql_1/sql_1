@@ -1,0 +1,39 @@
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY AUTO_INCREMENT, 
+    Name VARCHAR (255) NOT NULL, 
+    Description TEXT, 
+    Price DECIMAL (10,2) NOT NULL,
+    Stock INT NOT NULL,
+    CategoryID INT,
+    ImageURL VARCHAR(500),
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+);
+CREATE TABLE Categories (
+    CategoryID INT PRIMARY KEY AUTO_INCREMENT, 
+    CategoryName VARCHAR (100) NOT NULL
+);
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Address TEXT,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    OrderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    TotalAmount DECIMAL (10,2) NOT NULL, 
+    Status ENUM ('Pending', 'Shipped', 'Delivered' 'Cancelled') DEFAULT 'Pending', 
+    FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID)
+);
+CREATE TABLE OrderItems (
+    OrderItemId INT PRIMARY KEY AUTO_INCREMENT,
+    OrderID INT, 
+    ProductID INT,
+    Quantity INT NOT NULL,
+    Subtotal DECIMAL (10,2) NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE CASCADE,
+    FOREIGN KEY (ProductID) REFERENCES Products (ProductID) ON DELETE CASCADE
+)
