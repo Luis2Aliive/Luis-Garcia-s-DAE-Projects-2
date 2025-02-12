@@ -36,4 +36,14 @@ CREATE TABLE OrderItems (
     Subtotal DECIMAL (10,2) NOT NULL,
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID) ON DELETE CASCADE,
     FOREIGN KEY (ProductID) REFERENCES Products (ProductID) ON DELETE CASCADE
-)
+);
+-- Insert Data Into Customers Table
+INSERT INTO Customers (Name, Email, PasswordHash, Address) VALUES
+('Joseph Smith','joseph.smith@gmail.com','hashed_password1','123 Main St, New York NY'),
+('Mary Jane', 'mary.jane@hotmail.com', 'hashed_password2', '456 Elm St, Los Angeles CA'),
+('Mike Johnson', 'mike.johnson@icloud.com', 'hashed_password3', '789 Pine St, Chicago IL');
+--Insert Data Into Orders Table
+INSERT INTO Orders (CustomerID, OrderDate, TotalAmount, Status) VALUES
+(1, NOW(), 89.90, 'Pending'),
+(2, NOW(), 59.99, 'Shipped'),
+(3, NOW(), 29.99, 'Delivered');
