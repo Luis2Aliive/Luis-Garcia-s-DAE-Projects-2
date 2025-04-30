@@ -1,0 +1,45 @@
+-- Create The Clothes Table
+CREATE TABLE clothes (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    item_name VARCHAR(100) NOT NULL,
+    price DECIMAl(6,2) NOT NULL
+);
+
+-- Create The Orders Table With A Foreign Key Reference To Clothes
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    order_date DATE,
+    customer_name VARCHAR(100)
+    clothes_id INT,
+    quantity INT,
+    FOREIGN KEY (clothes_id) REFERENCES clothes(ID)
+);
+
+-- Insert Sample Data Into Clothes Table 
+INSERT INTO clothes (item_name, price) VALUES
+('T-Shirts', 60.00),
+('Sweatshirts', 75.00),
+('Pants & Shorts', 45.00);
+
+-- Insert Sample Data Into Orders Table, Linking To Clothes Using clothes_id
+INSERT INTO orders (order_date, customer_name, clothes_id, quantity) VALUES
+('2025-09-28', 'Alice', 1, 2), -- Alice Bought 2 T-Shirts
+('2025-09-29', 'Kobe', 2, 1), -- Kobe Bought 1 Sweatshirt
+('2025-09-30', 'Charlie', 3, 3); -- Charlie Bought 3 Pants & Shorts 
+
+-- Select All Clothing Items
+SELECT ID, item_name, price
+FROM clothes;
+
+-- Update The Price Of The "Sweatshirts" 
+UPDATE clothes
+SET price = 80.00
+WHERE item_name = 'Sweatshirts';
+
+-- Delete The Item "Pants & Shorts"
+DELETE FROM Clothes
+WHERE item_name = 'Pants & Shorts';
+
+-- Select All Orders And Join With Clothes To See Order Details
+SELECT orders.order_id, orders.order_date, orders.customer_name, clothes.item_name, orders.quantity, clothes.price, 
+(orders.quantity * clothes.price) AS total_price 

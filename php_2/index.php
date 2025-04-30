@@ -1,122 +1,108 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "VerseVibe_database";
+// Define constants
+define("DB_SERVER", "localhost");
+define("DB_USERNAME", "root");
+define("DB_PASSWORD", "");
+define("DB_NAME", "VerseVibe_database");
 
 // Create Connection
-$conn = new mysqli ($servername, $username, $password, $VerseVibe_database);
+$conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // Check Connection 
 if ($conn->connect_error) {
     die("Connection Failed: " . $conn->connect_error);
 }
 
-$age = 15
+// Example of storing data
+$age = 15;
 
+// Conditional statement
 if ($age >= 13) {
-    echo "You Are Allowed To Register.";
+    echo "You Are Allowed To Register.<br>";
 } else {
-    echo "Sorry, You Must Be 13 Or Older To Register."
+    echo "Sorry, You Must Be 13 Or Older To Register.<br>";
 }
 
-// Array Of Clothes 
-$clothes = array ("T-Shirts", "Sweatshirts", "Pants & Shorts",);
+// Array of clothes
+$clothes = array("T-Shirts", "Sweatshirts", "Pants & Shorts");
 
-// Loop Through And Print Each Item
+// Loop through and print each item
 for ($i = 0; $i < count($clothes); $i++) {
-    echo "You Have $Clothes[$i].<br>";
+    echo "You Have " . $clothes[$i] . ".<br>";
 }
 
-// Function To Calculate Total Price Of Clothing Items
+// Function to calculate total price
 function calculateTotal($pricePerItem, $quantity) {
-    $total = $pricePerItem * $quantity;
-    return $total;
+    return $pricePerItem * $quantity;
 }
 
-// Example Usage 
+// Using the function
 $shirtPrice = 25;
 $shirtQuantity = 3;
-
 $totalCost = calculateTotal($shirtPrice, $shirtQuantity);
+echo "Total Cost For Shirts: $$totalCost<br>";
 
-echo "Total Cost For Shirts: $$totalCost";
-
+// Associative array
 $product = array(
     "name" => "VerseVibe T-Shirt",
-    "Price" => 45,
-    "size" => "M"
+    "price" => 45,
+    "size" => "M",
     "in_stock" => true
 );
 
 echo "Product: " . $product["name"] . "<br>";
 echo "Price: $" . $product["price"] . "<br>";
 
-$inventory = array (
-    array ("item" => "T-Shirt", "Price" => N/A, "stock" => N/A)
-    array ("item" => "Sweatshirt", "Price" => N/A, "stock" => N/A)
-    array ("item" => "Pants & Shorts", "Price" => N/A, "stock" => N/A)
+// Multi-dimensional array
+$inventory = array(
+    array("item" => "T-Shirt", "price" => 20, "stock" => 50),
+    array("item" => "Sweatshirt", "price" => 35, "stock" => 30),
+    array("item" => "Pants & Shorts", "price" => 28, "stock" => 40)
 );
 
-// Loop Through Inventory
+// Loop through inventory
 echo "<br><strong>Inventory List:</strong><br>";
 for ($i = 0; $i < count($inventory); $i++) {
-    echo $inventory[$i]["item"] . " -$" . $inventory[$i]["price"] . " - In Stock: " . $inventory[$i]["stock"] . "<br>";
-
-// Database Connection 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$"VerseVibe_database";
-
-$conn = new mysqli ($servername, $username, $password, $VerseVibe_database);
-
-// Check Connection
-if ($conn->connect_error) {
-    die("Connection Failed: " . $conn->connect_error);
+    echo $inventory[$i]["item"] . " - $" . $inventory[$i]["price"] . " - In Stock: " . $inventory[$i]["stock"] . "<br>";
 }
 
-// Insert A New Clothing Item 
-$sql = "INSERT INTO clothes (item_name, price) VALUES ('T-Shirt', N/A)";
-
-If ($conn->query($sql) === TRUE) {
-    echo "New Item Added Successfully. <br>";
+// Insert a new clothing item
+$sql = "INSERT INTO clothes (item_name, price) VALUES ('T-Shirt', 20)";
+if ($conn->query($sql) === TRUE) {
+    echo "New Item Added Successfully.<br>";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-// Retrieve All Clothing Items 
-$sql = "SELECT ID, item_name, price FROM clothers";
+// Retrieve all clothing items
+$sql = "SELECT ID, item_name, price FROM clothes";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()){
-        echo "ID: " . $row["ID"] . "-Item: " . $row[ "item_name"]. " - Price $" . $row["price"]. "<br>";
+    while ($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["ID"] . " - Item: " . $row["item_name"] . " - Price: $" . $row["price"] . "<br>";
     }
 } else {
-    echo "No Items Found.";
+    echo "No Items Found.<br>";
 }
 
-// Update The Price Of The T-Shirt
+// Update the price of the T-Shirt
 $sql = "UPDATE clothes SET price = 30 WHERE item_name = 'T-Shirt'";
-
 if ($conn->query($sql) === TRUE) {
-    echo "Item Updated Successfully. <br>";
+    echo "Item Updated Successfully.<br>";
 } else {
-    echo "Error Updating Item: ". $coon->error;
+    echo "Error Updating Item: " . $conn->error . "<br>";
 }
 
-// Delete The T-Shirt 
+// Delete the T-Shirt
 $sql = "DELETE FROM clothes WHERE item_name = 'T-Shirt'";
-
 if ($conn->query($sql) === TRUE) {
     echo "Item Deleted Successfully.<br>";
 } else {
-    echo "Error Deleting Item:" . $conn->error;
-}
-<?php
-$conn->close();
-?>
+    echo "Error Deleting Item: " . $conn->error . "<br>";
 }
 
+// Close connection
+$conn->close();
 ?>
+
