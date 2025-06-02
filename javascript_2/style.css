@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #ffffff;
+    background-color: #000000;
   }
 
   img {
@@ -17,6 +17,12 @@
     float: left;
   }
   
+  ul {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  }
+
   li a {
     display: block;
     color: rgb(255, 255, 255);
@@ -28,7 +34,7 @@
   }
 
   li {
-    border-right: 1px solid #bbb;
+    border-right: 1px solid #ffffff;
   }
   
   li:last-child {
